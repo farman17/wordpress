@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: php-wp
-        image: farman17/dekkeng-pesbuk:tag
+        image: farman17/dekkeng-wordpress:tag
         ports:
           - containerPort: 80
         env:
