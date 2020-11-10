@@ -19,13 +19,13 @@
  */
 
 /** The name of the database for WordPress */
-define( 'DB_NAME',getenv('DB_NAMA') );
+define( 'DB_NAME',getenv('DB_NAME') );
 /** MySQL database username */
-define( 'DB_USER',getenv('DB_PENGGUNA') );
+define( 'DB_USER',getenv('DB_USER') );
 /** MySQL database password */
 define( 'DB_PASSWORD',getenv('DB_PASS') );
 /** MySQL hostname */
-define( 'DB_HOST',getenv('DB_RDS') );
+define( 'DB_HOST',getenv('DB_HOST') );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
