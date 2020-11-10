@@ -19,7 +19,7 @@
  */
 
 /** The name of the database for WordPress */
-define( 'DB_NAME',getenv('DB_NAME') );
+define( 'DB_NAME', 'dbwpress' );
 /** MySQL database username */
 define( 'DB_USER',getenv('DB_USER') );
 /** MySQL database password */
