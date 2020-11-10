@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: sosmed-service
+  name: wp-service
   namespace: production
 spec:
   ports:
@@ -9,25 +9,25 @@ spec:
     protocol: TCP
   #type: LoadBalancer
   selector:
-    app: sosmed
+    app: wp
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sosmed
+  name: wp
   namespace: production
 spec:
   selector:
     matchLabels:
-      app: sosmed
+      app: wp
   replicas: 2
   template:
     metadata:
       labels:
-        app: sosmed
+        app: wp
     spec:
       containers:
-      - name: php-pesbuk
+      - name: php-wp
         image: farman17/dekkeng-pesbuk:tag
         ports:
           - containerPort: 80
@@ -49,16 +49,16 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: sosmed-ingress
+  name: wp-ingress
   namespace: production
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: sosmed.dekkeng.online
+  - host: wordpress.dekkeng.online
     http:
       paths:
       #- path: /
       - backend:
-          serviceName: sosmed-service
+          serviceName: wp-service
           servicePort: 80
