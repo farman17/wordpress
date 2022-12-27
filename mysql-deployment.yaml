@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: mysql-deployment
+  namespace: development
 spec:
   selector:
     matchLabels:
@@ -36,7 +37,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: mysql-service
+  namespace: development
 spec:
   ports:
   - port: 3306
