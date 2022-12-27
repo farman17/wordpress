@@ -1,0 +1,47 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: wp-service
+  namespace: development
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  #type: LoadBalancer
+  selector:
+    app: wp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wp-deployment
+  namespace: development
+spec:
+  selector:
+    matchLabels:
+      app: wp
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: wp
+    spec:
+      containers:
+      - name: php-wp
+        image: farman17/new-wordpress
+        ports:
+          - containerPort: 80
+        env:
+        - name: DB_HOST
+          value: "dbsosmed.ce5wbyf7mq0s.us-east-2.rds.amazonaws.com"
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: p-secret-fb
+              key: DB_USER
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: p-secret-fb
+              key: DB_PASS
+
