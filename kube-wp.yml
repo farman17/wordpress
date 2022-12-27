@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: wp-service
-  namespace: production
+  namespace: development
 spec:
   ports:
   - port: 80
@@ -14,8 +14,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wp
-  namespace: production
+  name: wp-deployment
+  namespace: development
 spec:
   selector:
     matchLabels:
@@ -50,7 +50,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: wp-ingress
-  namespace: production
+  namespace: development
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
